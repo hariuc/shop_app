@@ -11,7 +11,11 @@ class DetailProductBloc extends Bloc<DetailProductEvent, DetailProductState> {
   Stream<DetailProductState> mapEventToState(DetailProductEvent event) async* {
     yield DetailProductLoadingState();
     if (event is DetailProductLoadEvent) {
-      try {} catch (e) {
+      try {
+        yield DetailProductLoadedState(
+            product:
+                await repository.getDetailProduct(idProduct: event.idProduct));
+      } catch (e) {
         DetailProductErrorState();
       }
     }

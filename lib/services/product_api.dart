@@ -5,5 +5,7 @@ class ProductAPI {
       await Utils.getDataFromServer(uriPath: 'products');
 
   Future<Map<String, dynamic>> getDetailProduct({required int id}) async =>
-      await Utils.getDataFromServer(uriPath: id.toString());
+      await Utils.getDataFromServer(uriPath: 'products/'+ id.toString());
+
+       
 }

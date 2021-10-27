@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shop_app/models/category.dart';
+import 'package:shop_app/models/image.dart';
 
 part 'product.g.dart';
 
@@ -11,8 +12,10 @@ class Product {
   final String size;
   final String colour;
   final double price;
-  final int sold_count;
+  final int? sold_count;
   final Category category;
+  String? main_image;
+  List<Image>? images;
 
   Product(
       {required this.name,
@@ -20,8 +23,10 @@ class Product {
       required this.size,
       required this.colour,
       required this.price,
-      required this.sold_count,
-      required this.category});
+      required this.category,
+      this.sold_count,
+      this.main_image,
+      this.images});
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);

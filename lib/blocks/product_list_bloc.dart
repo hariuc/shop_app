@@ -11,7 +11,13 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
   Stream<ProductListState> mapEventToState(ProductListEvent event) async* {
     yield ProductListLoadingState();
 
-    if (event is ProductListLoadEvent) {}
+    if (event is ProductListLoadEvent) {
+       try {
+        yield ProductListLoadedState(productList: await repository.getProductList());
+      } catch (e) {
+        yield ProductListErrorState();
+      } 
+    }
   }
 }
 

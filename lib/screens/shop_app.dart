@@ -4,6 +4,7 @@ import 'package:shop_app/blocks/detail_product_bloc.dart';
 import 'package:shop_app/blocks/product_list_bloc.dart';
 import 'package:shop_app/screens/products_list_screen/product_list_screen_main.dart';
 import 'package:shop_app/screens/splash_screen/splash_screen.dart';
+import 'package:shop_app/services/constants.dart';
 import 'package:shop_app/services/repository.dart';
 
 class ShopApp extends StatelessWidget {
@@ -28,6 +29,12 @@ class ShopApp extends StatelessWidget {
             shopApp: '/ProductListScreenMain',
           ),
           routes: routes,
+          theme: _getThemeData(),
         ),
+      );
+
+  ThemeData _getThemeData() => ThemeData(
+
+        primaryColor: Color(Constants.mainColor),
       );
 }
