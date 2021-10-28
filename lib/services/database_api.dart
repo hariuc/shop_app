@@ -2,28 +2,29 @@ import 'package:shop_app/database/database_helper.dart';
 import 'package:shop_app/database/product_table_setting.dart';
 import 'package:shop_app/models/product.dart';
 
-class ProductDatabaseAPI {
+class DatabaseAPI {
   DatabaseHelper databaseHelper = DatabaseHelper.instance;
 
-  Future<List<Product>> getAllFavoritFilmTopResponse() async {
+  Future<List<Product>> getAllFavoritProducts() async {
     var dbClient = await databaseHelper.database;
 
     var films = await dbClient.rawQuery(ProductTableSetting.getAllProduct());
 
-    List<Product> filmsList = films.isNotEmpty
+    List<Product> productList = films.isNotEmpty
         ? films.map((e) {
             return Product.fromJson(e);
           }).toList()
         : [];
-    return filmsList;
+    return productList;
   }
 
-  Future<int> insertFilm(Product product) async {
+  Future<int> insertProduct(Product product) async {
     var dbClient = await databaseHelper.database;
-    return await dbClient.insert(ProductTableSetting.tableName, product.toJson());
+    return await dbClient.insert(
+        ProductTableSetting.tableName, product.toJson());
   }
 
-  Future<int> deleteFilm(Product product) async {
+  Future<int> deleteProduct(Product product) async {
     var dbClient = await databaseHelper.database;
     return await dbClient.delete(ProductTableSetting.tableName,
         where: '${ProductTableSetting.id} = ?', whereArgs: [product.id]);

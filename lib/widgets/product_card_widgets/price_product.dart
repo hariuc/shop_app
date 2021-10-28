@@ -16,11 +16,12 @@ class PriceProduct extends StatelessWidget {
   Widget build(BuildContext context) => RichText(
           text: TextSpan(children: [
         TextSpan(
-            text: '${product.price},-',
+            text: '${product.price},-    ',
             style: TextStyle(
                 fontSize: fontSize1,
                 fontWeight: FontWeight.w600,
                 color: const Color(0xFF035A97))),
+        
         TextSpan(
             text: '${product.price},-',
             style: TextStyle(

@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/blocks/product_list_bloc.dart';
 import 'package:shop_app/common_widgets/common_widgets.dart';
 import 'package:shop_app/screens/products_list_screen/widgets/product_card.dart';
+import 'package:shop_app/services/database_api.dart';
+import 'package:shop_app/services/utils.dart';
+
 
 class ProductListWidget extends StatefulWidget {
   const ProductListWidget({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class ProductListWidget extends StatefulWidget {
 class _ProductListWidgetState extends State<ProductListWidget> {
   @override
   void initState() {
+    _fillFavoritProducts();
     BlocProvider.of<ProductListBloc>(context).add(ProductListLoadEvent());
     super.initState();
   }
@@ -37,4 +41,9 @@ class _ProductListWidgetState extends State<ProductListWidget> {
           itemCount: state.productList.length,
           itemBuilder: (context, index) =>
               ProductCard(product: state.productList[index]));
+
+  Future<void> _fillFavoritProducts() async {
+    final databaseAPI = DatabaseAPI();
+    Utils.productFavoritList = await databaseAPI.getAllFavoritProducts();
+  }
 }

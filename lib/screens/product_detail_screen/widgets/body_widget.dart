@@ -9,6 +9,7 @@ import 'package:shop_app/widgets/product_card_widgets/title_product.dart';
 
 class BodyWidget extends StatefulWidget {
   final Product product;
+
   const BodyWidget({required this.product, Key? key}) : super(key: key);
 
   @override
@@ -43,7 +44,7 @@ class _BodyWidgetState extends State<BodyWidget> {
         children: [
           _createImageViews(detailProduct: state.product),
           Expanded(
-            flex: 5,
+            flex: 4,
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,17 +135,6 @@ class _BodyWidgetState extends State<BodyWidget> {
         ],
       );
 
-  /*Widget _createImageViews({required Product detailProduct}) => SizedBox(
-        height: 290,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: detailProduct.images?.length,
-            itemBuilder: (contex, index) {
-              return Image.network(
-                  detailProduct.images!.elementAt(index).image);
-            }),
-      );*/
-
   Widget _createTextElement({required String str, required String liStr}) =>
       Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -167,7 +157,7 @@ class _BodyWidgetState extends State<BodyWidget> {
       );
 
   Widget _createImageViews({required Product detailProduct}) => SizedBox(
-      height: 290,
+      height: 310,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
@@ -176,6 +166,17 @@ class _BodyWidgetState extends State<BodyWidget> {
           Image.network(detailProduct.images!.elementAt(0).image),
         ],
       ));
+
+  /*Widget _createImageViews({required Product detailProduct}) => SizedBox(
+        height: 290,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: detailProduct.images?.length,
+            itemBuilder: (contex, index) {
+              return Image.network(
+                  detailProduct.images!.elementAt(index).image);
+            }),
+      );*/
 
   Widget _createDivider() => const Divider();
 
