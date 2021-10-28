@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/blocks/favorit_count_bloc.dart';
 import 'package:shop_app/blocks/product_db_bloc.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/services/constants.dart';
@@ -29,16 +30,22 @@ class Utils {
       {required BuildContext context, required Product product}) {
     BlocProvider.of<ProductDBBloc>(context)
         .add(ProductFavoritAddEvent(product: product));
+
     productFavoritList.add(product);
+
+    BlocProvider.of<FavoritCountBloc>(context).add(FavoritCountEvent.event1);
   }
 
   static void deleteProductFromFavorit(
       {required BuildContext context, required Product product}) {
     BlocProvider.of<ProductDBBloc>(context)
         .add(ProductFavoritDeleteEvent(product: product));
+
     if (productFavoritList.isNotEmpty) {
       productFavoritList.remove(product);
+      BlocProvider.of<FavoritCountBloc>(context).add(FavoritCountEvent.event2);
     }
+    
   }
 
   static void workWithAddOrDeleteProductFavorite(

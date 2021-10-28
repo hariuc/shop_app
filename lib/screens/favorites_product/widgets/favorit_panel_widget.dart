@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/blocks/favorit_count_bloc.dart';
 
-class FavoritPanelWidget extends StatelessWidget {
+class FavoritPanelWidget extends StatefulWidget {
   const FavoritPanelWidget({Key? key}) : super(key: key);
+
+  @override
+  State<FavoritPanelWidget> createState() => _FavoritPanelWidgetState();
+}
+
+class _FavoritPanelWidgetState extends State<FavoritPanelWidget> {
+
+  @override
+  void initState() {
+    BlocProvider.of<FavoritCountBloc>(context).add(FavoritCountEvent.event1);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -60,6 +74,7 @@ class FavoritPanelWidget extends StatelessWidget {
         ),
         onPressed: () {},
       );
+
   Widget _createTextFilters() => const Text(
         'FAVORITES',
         style: TextStyle(
@@ -68,5 +83,20 @@ class FavoritPanelWidget extends StatelessWidget {
             color: Color(0xFF182867)),
       );
 
-  Widget _createIndicatorFavorit() => Container();
+  Widget _createIndicatorFavorit() =>
+      BlocBuilder<FavoritCountBloc, int>(builder: (context, state) {
+        return Container(
+          width: 19,
+          height: 19,
+          child: Center(
+              child: Text(
+            '$state',
+            style: TextStyle(color: Colors.white),
+          )),
+          decoration: BoxDecoration(
+            color: const Color(0xFFE3453A),
+            shape: BoxShape.circle,
+          ),
+        );
+      });
 }

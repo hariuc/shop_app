@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/blocks/favorit_count_bloc.dart';
 import 'package:shop_app/models/product.dart';
 import 'package:shop_app/screens/product_detail_screen/product_detail_main_screen.dart';
 import 'package:shop_app/services/utils.dart';
@@ -111,6 +113,7 @@ class _ProductCardState extends State<ProductCard> {
           child: IconButton(
             onPressed: () {
               _workWithFavorit();
+              BlocProvider.of<FavoritCountBloc>(context).add(FavoritCountEvent.event1);
             },
             icon: colorIcon == null ? typeIconClean : typeIconColor,
             color: colorIcon,
