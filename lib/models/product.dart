@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shop_app/models/category.dart';
 import 'package:shop_app/models/image.dart';

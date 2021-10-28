@@ -15,7 +15,9 @@ class ProductListScreenMain extends StatelessWidget {
       );
 
   AppBar _createAppBar(BuildContext context) => AppBar(
-        title: Text(''),
+        title: Image.asset('assets/img/Logo.png',
+        width: 80,
+        height: 30,),
         centerTitle: true,
         leading: Icon(Icons.person),
         backgroundColor: Color(Constants.mainColor),

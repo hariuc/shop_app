@@ -8,10 +8,10 @@ class DatabaseAPI {
   Future<List<Product>> getAllFavoritProducts() async {
     var dbClient = await databaseHelper.database;
 
-    var films = await dbClient.rawQuery(ProductTableSetting.getAllProduct());
+    var products = await dbClient.rawQuery(ProductTableSetting.getAllProduct());
 
-    List<Product> productList = films.isNotEmpty
-        ? films.map((e) {
+    List<Product> productList = products.isNotEmpty
+        ? products.map((e) {
             return Product.fromJson(e);
           }).toList()
         : [];

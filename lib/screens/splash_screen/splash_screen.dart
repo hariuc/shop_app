@@ -24,7 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: const Color(Constants.mainColor),
         body: Center(
-          child: Text('WOW'),
+          child: Image.asset(
+            'assets/img/Logo.png',
+            width: 155,
+            height: 40
+            ),
         ),
       );
 }

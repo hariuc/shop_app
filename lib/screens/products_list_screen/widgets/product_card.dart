@@ -17,6 +17,8 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   late Color? colorIcon;
+  Icon typeIconClean = Icon(Icons.favorite_border);
+  Icon typeIconColor = Icon(Icons.favorite_outlined);
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class _ProductCardState extends State<ProductCard> {
       child: Padding(
         padding: const EdgeInsets.only(right: 30),
         child: Container(
+          width: double.infinity,
           decoration: const BoxDecoration(
             border: Border(
               top: BorderSide(width: 1, color: Color.fromRGBO(0, 0, 0, 0.1)),
@@ -55,7 +58,9 @@ class _ProductCardState extends State<ProductCard> {
                       padding:
                           const EdgeInsets.only(top: 20, right: 10, bottom: 10),
                       child:
-                          TitleProduct(product: widget.product, fontSize: 18),
+                          Container(
+                            width: 150,
+                            child: TitleProduct(product: widget.product, fontSize: 18)),
                     ),
                     SubtitleProduct(product: widget.product, fontSize: 12),
                     const SizedBox(
@@ -91,20 +96,40 @@ class _ProductCardState extends State<ProductCard> {
 
   Widget _createButtonPanel() => Row(
         children: [
-          _createButton(
-              icon: Icon(
-                Icons.favorite_border,
-                color: colorIcon,
-              ),
-              function: _workWithFavorit),
+          _createFavoritButton(),
           const SizedBox(
             width: 24,
           ),
-          _createButton(icon: const Icon(Icons.shopping_cart), function: () {}),
+          _createCartButton(),
         ],
       );
 
-  Widget _createButton({required Icon icon, required Function function}) =>
+  Widget _createFavoritButton() => Container(
+        height: 36,
+        width: 36,
+        child: Center(
+          child: IconButton(
+            onPressed: () {
+              _workWithFavorit();
+            },
+            icon: colorIcon == null ? typeIconClean : typeIconColor,
+            color: colorIcon,
+          ),
+        ),
+      );
+
+  Widget _createCartButton() => Container(
+        height: 36,
+        width: 36,
+        child: Center(
+          child: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.shopping_cart),
+          ),
+        ),
+      );
+
+  /*Widget _createButton({required Icon icon, required Function function}) =>
       Container(
         height: 36,
         width: 36,
@@ -114,7 +139,7 @@ class _ProductCardState extends State<ProductCard> {
             icon: icon,
           ),
         ),
-      );
+      );*/
 
   Future<void> _navigateToDetailProduct({required BuildContext context}) async {
     var route = MaterialPageRoute(
@@ -122,11 +147,11 @@ class _ProductCardState extends State<ProductCard> {
     await Navigator.push(context, route);
   }
 
-  void _workWithFavorit(){
+  void _workWithFavorit() {
     Utils.workWithAddOrDeleteProductFavorite(
-                    context: context, product: widget.product);
-                setState(() {
-                  colorIcon = Utils.getIconColor(product: widget.product);
-                });
+        context: context, product: widget.product);
+    setState(() {
+      colorIcon = Utils.getIconColor(product: widget.product);
+    });
   }
 }

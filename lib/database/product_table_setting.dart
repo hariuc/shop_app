@@ -10,6 +10,7 @@ class ProductTableSetting {
   static const String sold_count = 'sold_count';
   static const String category = 'category';
   static const String images = 'images';
+  static const String main_image = 'main_image';
 
   static String createProductTable() {
     final strBuffer = StringBuffer();
@@ -23,6 +24,7 @@ class ProductTableSetting {
     strBuffer.write("${price} REAL NOT NULL, ");
     strBuffer.write("${images} TEXT, ");
     strBuffer.write("${category} TEXT, ");
+    strBuffer.write("${main_image} TEXT, ");
     strBuffer.write("${sold_count} INTEGER NOT NULL )");
 
     return strBuffer.toString();

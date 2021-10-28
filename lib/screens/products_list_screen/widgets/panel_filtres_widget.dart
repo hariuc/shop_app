@@ -57,7 +57,7 @@ class PanelFiltresWidget extends StatelessWidget {
 
   Widget _createFiltreButton() => IconButton(
         icon: Icon(
-          Icons.category,
+          Icons.filter_alt,
           size: 16.0,
         ),
         onPressed: () {},

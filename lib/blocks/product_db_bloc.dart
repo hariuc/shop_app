@@ -5,7 +5,8 @@ import 'package:shop_app/services/repository.dart';
 class ProductDBBloc extends Bloc<ProductFavoritEvent, ProductFavoritState> {
   final Repository repository;
 
-  ProductDBBloc({required this.repository}) : super(ProductFavoritLoadingState());
+  ProductDBBloc({required this.repository})
+      : super(ProductFavoritLoadingState());
 
   @override
   Stream<ProductFavoritState> mapEventToState(
@@ -24,6 +25,7 @@ class ProductDBBloc extends Bloc<ProductFavoritEvent, ProductFavoritState> {
     if (event is ProductFavoritAddEvent) {
       try {
         await repository.insertProduct(event.product);
+
         yield ProductFavoritLoadedState(
             productList: await repository.getAllFavoritProducts());
       } catch (e) {

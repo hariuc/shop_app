@@ -14,7 +14,9 @@ class FavoritesProductMainScreen extends StatelessWidget {
       );
 
   AppBar _createAppBar() => AppBar(
-        title: Text(''),
+        title: Image.asset('assets/img/Logo.png',
+        width: 80,
+        height: 30,),
         centerTitle: true,
         backgroundColor: Color(Constants.mainColor),
         actions: [
